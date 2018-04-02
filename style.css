@@ -12,6 +12,16 @@ body {
     padding: 50px;
 }
 
+.button {
+    padding: 5px 10px;
+    background-color: #b3fd01;
+    font-weight: 600;
+}
+
+.matrix-container {
+    text-align: center;
+}
+
 .matrix {
     border: 1px solid #cccccc;
     border-spacing: 0;
