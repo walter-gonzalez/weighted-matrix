@@ -11,7 +11,7 @@
             <table id="1" class="matrix">
                 <!--Fila de variantes de diseño...-->
                 <tr class="matrix-designs-row">
-                    <td class="matrix-cell matrix-description" colspan="2" contenteditable><strong>Descripción:</strong> Breve descripción opcional de la matriz y el proyecto.</td>
+                    <td class="matrix-description" colspan="2" contenteditable><strong>Descripción:</strong> Breve descripción opcional de la matriz y el proyecto.</td>
                     <td class="matrix-cell" colspan="2" contenteditable>Diseño 1</td>
                     <td class="matrix-cell" colspan="2" contenteditable>Diseño 2</td>
                 </tr>
@@ -27,11 +27,21 @@
                 <!--Fila de cada criterio...-->
                 <tr class="matrix-criteria-row">
                     <td class="matrix-cell" contenteditable>Criterio 1</td>
-                    <td class="matrix-cell">0</td>
-                    <td class="matrix-cell">0</td>
-                    <td class="matrix-cell">0</td>
-                    <td class="matrix-cell">0</td>
-                    <td class="matrix-cell">0</td>
+                    <td>
+                        <input class="matrix-cell" type="number" value="0" />
+                    </td>
+                    <td>
+                        <input class="matrix-cell" type="number" value="0" />
+                    </td>
+                    <td>
+                        <input class="matrix-cell" type="number" value="0" disabled />
+                    </td>
+                    <td>
+                        <input class="matrix-cell" type="number" value="0" />
+                    </td>
+                    <td>
+                        <input class="matrix-cell" type="number" value="0" disabled />
+                    </td>
                 </tr>
                 <!--Suma de scores...-->
                 <tr class="matrix-score-row">

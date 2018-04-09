@@ -10,6 +10,22 @@
     var addCriteriaBtn = document.getElementById("add-criteria");
     var addDesignBtn = document.getElementById("add-design");
 
+    //Guardo celdas editables...
+    var cells = document.querySelectorAll('input.matrix-cell');
+    for (item of cells) {
+        item.addEventListener('change', recalculateAllScores);
+    }
+
+    //Si cambio el peso de un criterio...
+    function recalculateAllScores() {
+        console.log('recalculo toda la fila del criterio');
+    }
+
+    //Si cambio el rating de un criterio para un diseño...
+    function recalculateDesignScore() {
+        console.log('recalculo el total para ese diseno en particular');
+    }
+
     //Agregar criterio...
     function addCriteria() {
 
@@ -31,12 +47,17 @@
             //Celdas por defecto del nuevo criterio...
             var newCriteriaTitle = document.createElement("td");
             var newCriteriaWeight = document.createElement("td");
+            var newCriteriaWeightInput = document.createElement("input");
 
             newCriteriaTitle.appendChild(document.createTextNode("Criterio " + criteriasCount));
             newCriteriaTitle.setAttribute('contenteditable', 'true');
-            newCriteriaWeight.appendChild(document.createTextNode("0"));
             newCriteriaTitle.classList.add("matrix-cell");
-            newCriteriaWeight.classList.add("matrix-cell");
+            
+            newCriteriaWeightInput.setAttribute('type', 'number');
+            newCriteriaWeightInput.setAttribute('value', '0');
+            newCriteriaWeightInput.classList.add('matrix-cell');
+
+            newCriteriaWeight.appendChild(newCriteriaWeightInput);
             
             newCriteriaDefaults.appendChild(newCriteriaTitle);
             newCriteriaDefaults.appendChild(newCriteriaWeight);
@@ -48,8 +69,17 @@
    
             for (i = 1; i <= designsCount * 2; i++) {
                 var defaultStat = document.createElement("td");
-                defaultStat.appendChild(document.createTextNode("0"));
-                defaultStat.classList.add("matrix-cell");
+                var defaultStatInput = document.createElement('input');
+
+                defaultStatInput.setAttribute('type', 'number');
+                defaultStatInput.setAttribute('value', '0');
+                defaultStatInput.classList.add("matrix-cell");
+                
+                if (i % 2 == 0) {
+                    defaultStatInput.setAttribute('disabled', 'true');
+                }
+
+                defaultStat.appendChild(defaultStatInput);
 
                 tr.appendChild(defaultStat);
             }
