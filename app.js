@@ -33,6 +33,7 @@
             var newCriteriaWeight = document.createElement("td");
 
             newCriteriaTitle.appendChild(document.createTextNode("Criterio " + criteriasCount));
+            newCriteriaTitle.setAttribute('contenteditable', 'true');
             newCriteriaWeight.appendChild(document.createTextNode("0"));
             newCriteriaTitle.classList.add("matrix-cell");
             newCriteriaWeight.classList.add("matrix-cell");
@@ -75,6 +76,7 @@
             newDesignTitle.innerHTML = 'Diseño ' + designsCount;
             newDesignTitle.classList.add('matrix-cell');
             newDesignTitle.setAttribute('colspan', '2');
+            newDesignTitle.setAttribute('contenteditable', 'true');
             designsRow.appendChild(newDesignTitle);
 
             //Agrego nueva linea de titulos...
@@ -91,16 +93,16 @@
             var criteriasRows = document.querySelectorAll('.matrix-criteria-row');
             
             //Agrego valores por defecto de rating y score para cada criterio...
-            for (i = 0; i < criteriasCount * 2; i++) {
+            for (i = 0; i < criteriasRows.length; i++) {
+                   
+                for (j = 1; j <= 2; j++) {
+                    var defaultStat = document.createElement("td");
+                    defaultStat.appendChild(document.createTextNode("0"));
+                    defaultStat.classList.add("matrix-cell");
 
-                var defaultStat = document.createElement("td");
-                defaultStat.appendChild(document.createTextNode("0"));
-                defaultStat.classList.add("matrix-cell");
-
-                for (j = 0; j < criteriasRows.length; j++) {
-                    criteriasRows[j].appendChild(defaultStat);
+                    criteriasRows[i].appendChild(defaultStat);
                 }
-
+                
             }
 
             //Agrego valores por defecto para fila de totales...
