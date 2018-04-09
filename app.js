@@ -1,4 +1,4 @@
-/*(function() {*/
+(function() {
 
     //Variables para toda la app...
     var designsCount = 2;
@@ -49,6 +49,7 @@
                 var defaultStat = document.createElement("td");
                 defaultStat.appendChild(document.createTextNode("0"));
                 defaultStat.classList.add("matrix-cell");
+
                 tr.appendChild(defaultStat);
             }
 
@@ -64,8 +65,52 @@
         if (designsCount >= maxDesigns) {
             alert("El máximo de diseños es " + maxDesigns);
         } else {
+
+            //Aumento cantidad de diseños +1...
             designsCount += 1;
-            alert("Diseño agregado!");
+
+            //Agrego el titulo del diseno...
+            var designsRow = document.querySelector(".matrix-designs-row");
+            var newDesignTitle = document.createElement('td');
+            newDesignTitle.innerHTML = 'Diseño ' + designsCount;
+            newDesignTitle.classList.add('matrix-cell');
+            newDesignTitle.setAttribute('colspan', '2');
+            designsRow.appendChild(newDesignTitle);
+
+            //Agrego nueva linea de titulos...
+            var titlesRow = document.querySelector(".matrix-titles-row");
+            var titleRating = document.createElement('td');
+            var titleScore = document.createElement('td');
+            titleRating.innerHTML = 'Rating';
+            titleScore.innerHTML = 'Score';
+            titleRating.classList.add('matrix-cell');
+            titleScore.classList.add('matrix-cell');
+            titlesRow.appendChild(titleRating);
+            titlesRow.appendChild(titleScore);
+
+            var criteriasRows = document.querySelectorAll('.matrix-criteria-row');
+            
+            //Agrego valores por defecto de rating y score para cada criterio...
+            for (i = 0; i < criteriasCount * 2; i++) {
+
+                var defaultStat = document.createElement("td");
+                defaultStat.appendChild(document.createTextNode("0"));
+                defaultStat.classList.add("matrix-cell");
+
+                for (j = 0; j < criteriasRows.length; j++) {
+                    criteriasRows[j].appendChild(defaultStat);
+                }
+
+            }
+
+            //Agrego valores por defecto para fila de totales...
+            var totalsRow = document.querySelector('.matrix-score-row');
+            var totalDefault = document.createElement('td');
+            totalDefault.classList.add('matrix-cell');
+            totalDefault.innerHTML = '0';
+            totalDefault.setAttribute('colspan', '2');
+            totalsRow.appendChild(totalDefault);
+            
         }
 
     }
@@ -74,10 +119,5 @@
     addCriteriaBtn.addEventListener("click", addCriteria);
     addDesignBtn.addEventListener("click", addDesign);
 
-
-
-
-
-
-    /*}()
-);*/
+    }()
+);
