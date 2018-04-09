@@ -57,6 +57,7 @@
             newCriteriaWeightInput.setAttribute('value', '0');
             newCriteriaWeightInput.classList.add('matrix-cell');
 
+            newCriteriaWeight.setAttribute('height', '60');
             newCriteriaWeight.appendChild(newCriteriaWeightInput);
             
             newCriteriaDefaults.appendChild(newCriteriaTitle);
@@ -69,12 +70,14 @@
    
             for (i = 1; i <= designsCount * 2; i++) {
                 var defaultStat = document.createElement("td");
+                defaultStat.setAttribute('height', '60');
                 var defaultStatInput = document.createElement('input');
 
                 defaultStatInput.setAttribute('type', 'number');
                 defaultStatInput.setAttribute('value', '0');
                 defaultStatInput.classList.add("matrix-cell");
                 
+                //Si es una celda de score, deshabilito la edicion...
                 if (i % 2 == 0) {
                     defaultStatInput.setAttribute('disabled', 'true');
                 }
@@ -127,8 +130,19 @@
                    
                 for (j = 1; j <= 2; j++) {
                     var defaultStat = document.createElement("td");
-                    defaultStat.appendChild(document.createTextNode("0"));
-                    defaultStat.classList.add("matrix-cell");
+                    defaultStat.setAttribute('height', '60');
+                    var defaultStatInput = document.createElement('input');
+
+                    defaultStatInput.setAttribute('type', 'number');
+                    defaultStatInput.setAttribute('value', '0');
+                    defaultStatInput.classList.add("matrix-cell");
+                    
+                    //Si es una celda de score, deshabilito la edicion...
+                    if (j % 2 == 0) {
+                        defaultStatInput.setAttribute('disabled', 'true');
+                    }
+
+                    defaultStat.appendChild(defaultStatInput);
 
                     criteriasRows[i].appendChild(defaultStat);
                 }
