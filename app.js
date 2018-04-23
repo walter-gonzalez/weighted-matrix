@@ -1,6 +1,7 @@
 (function() {
 
 var matrix = {
+    //Data
     description : '<strong>Descripción:</strong> Breve descripción opcional de la matriz y el proyecto.',
     designsCount : 2,
     criteriasCount : 1,
@@ -20,6 +21,16 @@ var matrix = {
         },
     criterias : [],
     designs : [],
+
+    //Elementos del DOM
+    
+    descriptionCell : document.querySelector('.matrix-description'),
+    
+    //Guardo los botones...
+    addCriteriaBtn : document.getElementById("add-criteria"),
+    addDesignBtn : document.getElementById("add-design"),
+
+    //Metodos
     addCriteria : function() {
         console.log('add criteria');
     },
@@ -29,17 +40,11 @@ var matrix = {
     init : function() {
         console.log('init');
 
-        //Escribo descripcion por defecto...
-        var descriptionCell = document.querySelector('.matrix-description');
-        descriptionCell.innerHTML = this.description;
-
-        //Guardo los botones...
-        var addCriteriaBtn = document.getElementById("add-criteria");
-        var addDesignBtn = document.getElementById("add-design");
+        this.descriptionCell.innerHTML = this.description;
 
         //Listeners para botones...
-        addCriteriaBtn.addEventListener("click", matrix.addCriteria.bind(this));
-        addDesignBtn.addEventListener("click", matrix.addDesign.bind(this));
+        this.addCriteriaBtn.addEventListener("click", matrix.addCriteria.bind(this));
+        this.addDesignBtn.addEventListener("click", matrix.addDesign.bind(this));
 
         this.render();
     },
