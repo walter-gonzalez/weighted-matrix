@@ -12,19 +12,16 @@
 
     //Guardo celdas editables...
     var cells = document.querySelectorAll('input.matrix-cell');
-    for (item of cells) {
-        item.addEventListener('change', recalculateAllScores);
-    }
 
-    //Si cambio el peso de un criterio...
-    function recalculateAllScores() {
-        console.log('recalculo toda la fila del criterio');
+    //Si cambio una celda...
+    function recalculateAllScores(e) {
+        var whichCriteria = e.target.parentNode.parentNode;
     }
 
     //Si cambio el rating de un criterio para un diseño...
-    function recalculateDesignScore() {
+    /*function recalculateDesignScore() {
         console.log('recalculo el total para ese diseno en particular');
-    }
+    }*/
 
     //Agregar criterio...
     function addCriteria() {
@@ -89,6 +86,13 @@
 
             newCriteria.appendChild(tr);
             lastCriteria.after(newCriteria);
+
+            //Listeners para celdas...
+            for (cell of cells) {
+                cell.addEventListener("change", recalculateAllScores);
+                /*cell.addEventListener("focus", cleanCell);
+                cell.addEventListener("blur", restoreCell);*/
+            }
         }
 
     }
@@ -135,6 +139,7 @@
 
                     defaultStatInput.setAttribute('type', 'number');
                     defaultStatInput.setAttribute('value', '0');
+                    defaultStatInput.setAttribute('data-row', 'row-' + i);
                     defaultStatInput.classList.add("matrix-cell");
                     
                     //Si es una celda de score, deshabilito la edicion...
@@ -161,9 +166,33 @@
 
     }
 
+    //Limpiar celda en focus...
+    /*function cleanCell(event) {
+        var self = event.target;
+        var currentValue = self.value;
+        self.value = '';
+    }
+    
+    //Restauro el valor de la celda al que estaba si el usuario no lo modifica...
+    function restoreCell(event) {
+        var self = event.target;
+        var currentValue = self.value;
+
+        if (currentValue === '') {
+            self.value = '0';
+        }
+    }*/
+
     //Listeners para botones...
     addCriteriaBtn.addEventListener("click", addCriteria);
     addDesignBtn.addEventListener("click", addDesign);
+
+    //Listeners para celdas...
+    for (cell of cells) {
+        cell.addEventListener("change", recalculateAllScores);
+        /*cell.addEventListener("focus", cleanCell);
+        cell.addEventListener("blur", restoreCell);*/
+    }
 
     }()
 );
